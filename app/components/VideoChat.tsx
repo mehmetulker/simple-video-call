@@ -15,9 +15,10 @@ export default function VideoChat({
 
   useEffect(() => {
     const peer = new Peer(username, {
-      host: "mehmetulkervideocall.loca.lt",
+      host: "slow-pianos-unite.loca.lt",
       port: 3001,
       path: "/peerjs",
+      secure: true,
     });
 
     navigator.mediaDevices
