@@ -1,14 +1,4 @@
-import { createServer } from 'http';
-import { App } from 'next/app';
+import { io } from "socket.io-client";
 
-const httpServer = createServer();
-const io = require('socket.io')(httpServer);
-
-// Next.js App'a ekstra alan eklemek için genişletme
-declare module 'next/app' {
-  interface AppInitialProps {
-    socketServer?: any;
-  }
-}
-
-export { io, httpServer };
+const socket = io(" https://mehmetulkervideocall.loca.lt"); // backend adresi
+export default socket;
