@@ -1,14 +1,27 @@
-// /app/meeting/[roomId]/page.tsx
+"use client";
 
 import React from "react";
-import VideoCall from "../../components/VideoCall";
+import { useSearchParams } from "next/navigation";
+import dynamic from "next/dynamic";
 
-export default async function MeetingPage({ params }) {
-  const { roomId } = await params;
+const VideoChat = dynamic(() => import("../../components/VideoChat"), {
+  ssr: false,
+});
+
+export default function RoomPage({
+  params,
+}: {
+  params: Promise<{ roomId: string }>;
+}) {
+  const { roomId } = React.use(params);
+  const searchParams = useSearchParams();
+  const username = searchParams.get("username") || "anonymous";
+
   return (
     <div>
-      <h1>Hoşgeldin, {decodeURIComponent(roomId)}</h1>
-      <VideoCall username={decodeURIComponent(roomId)} />
+      <h1>Oda: {roomId}</h1>
+      <p>Kullanıcı: {username}</p>
+      <VideoChat roomId={roomId} username={username} />
     </div>
   );
 }
