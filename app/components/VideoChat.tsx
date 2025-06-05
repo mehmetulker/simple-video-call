@@ -15,9 +15,9 @@ export default function VideoChat({
 
   useEffect(() => {
     const peer = new Peer(username, {
-      host: "slow-pianos-unite.loca.lt",
-      port: 3001,
-      path: "/peerjs",
+      host: "server-socket-production-86ed.up.railway.app",
+      port: 443, // Railway HTTPS port
+      path: "/peerjs", // Eğer sunucuda PeerJS path'in buysa
       secure: true,
     });
 
